@@ -150,3 +150,12 @@ SELECT *
     WHERE buy_price > (SELECT AVG(buy_price) 
 	FROM products AS a2
     WHERE a2.product_line = a1.product_line);
+    
+
+
+with jefas as (select employee_number as j_number, first_name as j_first, last_name as j_last
+					from employees)
+select employee_number as emp_number, first_name as emp_first, last_name as emp_last, reports_to, j.*
+	from employees as e
+    left join jefas as j
+    on j.j_number = e.reports_to;
